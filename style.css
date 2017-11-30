@@ -1,0 +1,82 @@
+#backImage {
+	position:fixed;
+	top:0; left:0;
+  width:100%;
+  height:100%;
+  background:url(images/bg1.png) no-repeat center center;
+  background-size:cover;
+}
+
+#banner {
+        position:fixed;
+        top:3%; left:3%;
+    width: 75%;
+    height: 10%;
+}
+
+.interact {
+    height:50%;
+    width:15%;
+    height:auto;
+    display:inline-block;
+}
+
+.banBut {
+    height:75%;
+    width:7%;
+    position:absolute;
+    
+}
+
+#bgMusic {
+        position: fixed;
+        bottom: 0; right: 0;
+}
+
+#narrator {
+    background:rgba(50,50,150,0.15);
+}
+
+#vioBox {
+    background:rgba(255,255,255,0.7);
+}
+
+#noteMap {
+    background:rgba(255,255,255,0.7);
+}
+
+#vp1 {
+    font-size:0.8vw;
+}
+#vp2 {
+    font-size:0.8vw;
+}
+#vp3 {
+    font-size:0.8vw;
+}
+#vp4 {
+    font-size:0.8vw;
+}
+#vp5 {
+    font-size:0.8vw;
+}
+#bp1 {
+    font-size:0.8vw;
+}
+#bp2 {
+    font-size:0.8vw;
+}
+#bp3 {
+    font-size:0.8vw;
+}
+#bp4 {
+    font-size:0.8vw;
+}
+#bp5 {
+    font-size:0.8vw;
+}
+
+
+
+
+
