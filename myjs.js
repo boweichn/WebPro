@@ -64,17 +64,19 @@ var backImg = document.getElementById('backImage');
 /*---------------func---------------*/
 function reloadPage(){
    window.location.reload();
-}
+};
 
 
 var play = function () {
     var sound = inpData.shift();
     window['sound'+sound].play();
-    console.log(inpData)
+    console.log(sound)
     if (inpData.length) setTimeout(play, 1000);
 };
  
-
+function replaceAt(string, index, replace) {
+  return string.substring(0, index) + replace + string.substring(index + 1);
+}
 
 /*----------------home button--------------*/
 document.getElementById('home').addEventListener('click', function(){
@@ -701,7 +703,7 @@ document.getElementById('notemapping').addEventListener('click', function(){
             getPlay = document.getElementById('playButton'),
             getClear = document.getElementById('clearArr');
         
-        getInpTitle.innerHTML='Enter a note or notes to play! Please enter the string, and then the note. Enter only one note at a time. Keep entering to play a list of notes. (i.e G string G note, is entered as GG! G# or Ab is entered as GGsAb! case sensitive)';
+        getInpTitle.innerHTML='Enter a note or notes to play! Please enter the open string, then the note, then s for sharp or b for flat if you want to enter half notes. if entering more than one note, please separate notes with a space!';
         getPlay.innerHTML = 'Play!';
         getClear.innerHTML = 'Clear Notes'
         
@@ -1164,8 +1166,27 @@ document.getElementById('notemapping').addEventListener('click', function(){
     //note arrays//
     document.getElementById('input').addEventListener('keyup', function(e){
        if (e.keyCode === 13) {
-           var getValue = document.getElementById('input').value;
-           inpData.push(getValue);
+           var getValue = (document.getElementById('input').value.toUpperCase()).split(' ');
+           for (var item of getValue){
+               if (item.length === 3){
+                   if (item.charAt(2) === 'S'){
+                       var newItem = item;
+                       var arrItem = newItem.split('')
+                       arrItem.splice(2, 1, 's');
+                       var result = arrItem.join('');
+                       inpData.push(result);
+                   }else if (item.charAt(2) === 'B'){
+                       var newItem = item;
+                       var arrItem = newItem.split('')
+                       arrItem.splice(2, 1, 'b');
+                       var result = arrItem.join('');
+                       inpData.push(result);
+                   }
+               }else {
+                   inpData.push(item);
+               }
+           };
+           console.log(inpData)
            document.getElementById('inputOutput').innerHTML = 'Do you want to play the note(s): '+inpData.join(' ')+'?';
            document.getElementById('playButton').style.display = 'inline';
            document.getElementById('clearArr').style.display = 'inline';
