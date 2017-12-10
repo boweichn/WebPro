@@ -1,6 +1,7 @@
 var originalHtml = document.body.innerHTML;
 var histclick = 0;
 var vioclick = 0;
+var rcmclick = 0;
 var noteclick = 0;
 
 //sound mp3 variables G string/
@@ -73,25 +74,25 @@ var play = function () {
     console.log(sound)
     if (inpData.length) setTimeout(play, 1000);
 };
- 
-function replaceAt(string, index, replace) {
-  return string.substring(0, index) + replace + string.substring(index + 1);
-}
 
 /*----------------home button--------------*/
 document.getElementById('home').addEventListener('click', function(){
+    document.getElementById('bgMusic').play();
     if (histclick > 0){
         document.getElementById('narrator').style.display = 'none';
     }if (vioclick > 0){
         document.getElementById('vioBox').style.display = 'none';
+    }if (rcmclick > 0){
+        document.getElementById('rcmBox').style.display = 'none';
     }if (noteclick > 0){
         document.getElementById('noteMap').style.display = 'none';
-    }
+    };
 });
 
 /*----------------history--------------*/
 
 document.getElementById('history').addEventListener('click', function(){
+    document.getElementById('bgMusic').play();
     if (histclick == 0) {
         //variables and div classes designation//
         var iDiv = document.createElement('div');
@@ -134,11 +135,11 @@ document.getElementById('history').addEventListener('click', function(){
         var txtp2 = document.getElementById('p2');
         var txtp3 = document.getElementById('p3');
 ;
-        txtp1.innerHTML = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nibh purus, pharetra nec tincidunt eu, blandit volutpat sapien. Phasellus sodales neque sit amet dolor auctor suscipit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam vitae nisl vel leo tincidunt sagittis imperdiet at lorem. Etiam efficitur tempor mattis. Sed nibh felis, consectetur at sapien ac, vehicula accumsan tortor. Integer urna felis, efficitur vel risus vitae, ornare vulputate mauris. Curabitur hendrerit eros vehicula auctor sagittis. Sed enim tortor, rhoncus eget pellentesque in, dapibus vel nulla.';
+        txtp1.innerHTML = 'The Persian geographer Ibn Khurradadhbih (d. 911) of the 9th century, was the first to cite the bowed Byzantine lira as a typical instrument of the Byzantines and equivalent to the rabab used in the Islamic Empires of that time. The Byzantine lira spread through Europe westward and in the 11th and 12th centuries European writers use the terms fiddle and lira interchangeably when referring to bowed instruments. In the meantime rabab was introduced to the Western Europe possibly through the Iberian Peninsula and both bowed instruments spread widely throughout Europe giving birth to various European bowed instruments.';
 
-        txtp2.innerHTML = 'Nulla varius gravida commodo. In enim neque, aliquet ac pellentesque at, rutrum et lacus. Aliquam neque tortor, convallis eu ultrices in, lacinia vel odio. Sed neque nulla, hendrerit at turpis ac, pellentesque tempus felis. Suspendisse consequat rhoncus velit, et congue mauris dictum sed. Mauris fringilla convallis enim ac volutpat. Suspendisse vulputate magna in interdum ultricies. Morbi vitae nibh et eros sodales euismod sed a justo. Nullam volutpat, lacus eu rutrum ultricies, nunc ligula porta dui, in bibendum nisi eros et erat. Sed id mi porttitor, elementum mi ac, luctus velit. Proin et nisl finibus, blandit nunc a, consectetur velit. Nam sit amet tellus sem. Vestibulum commodo a massa sed malesuada. Ut a vestibulum lectus. Curabitur ac euismod felis, id varius nisi. Donec lorem sem, consequat non ligula at, tristique luctus tellus.';
+        txtp2.innerHTML = 'The first clear record of a violin-like instrument comes from paintings by Gaudenzio Ferrari. In his Madonna of the Orange Tree, painted 1530, a cherub is seen playing a bowed instrument which clearly has the hallmarks of violins. A few years later, on a fresco inside the cupola of the church of Madonna dei Miracoli in Saronno, angels play three instruments of the violin family, corresponding to violin, viola and cello. The instruments Ferrari depicts have bulging front and back plates, strings which feed into peg-boxes with side pegs, and f-holes. They do not have frets.';
 
-        txtp3.innerHTML = 'In finibus et arcu eget aliquam. Maecenas quis lacinia tellus. Maecenas venenatis mollis justo, ut blandit tellus dapibus eu. Morbi interdum urna justo, ac finibus ex dapibus eu. Suspendisse volutpat massa justo, ullamcorper auctor velit tincidunt id. Ut non elit malesuada, malesuada est vel, posuere nibh. Mauris venenatis iaculis ornare. Etiam ultrices, massa ut consequat vulputate, nunc dui vehicula mauris, facilisis volutpat eros nulla id magna. Sed dictum dictum orci, sit amet blandit libero malesuada ac. Nunc euismod justo id venenatis tristique.';
+        txtp3.innerHTML = 'In the 19th and 20th centuries numerous violins were produced in France, Saxony and the Mittenwald in what is now Germany, in the Tyrol, now parts of Austria and Italy, and in Bohemia, now part of the Czech Republic. About seven million violin family instruments and basses, and far more bows, were shipped from Markneukirchen between 1880 and 1914. Many 19th and early 20th century instruments shipped from Saxony were in fact made in Bohemia, where the cost of living was less. While the French workshops in Mirecourt employed hundreds of workers, the Saxon/Bohemian instruments were made by a cottage industry of "mostly anonymous skilled laborers quickly turning out a simple, inexpensive product."';
 
         //styling the divs//
         narrator.style.left = '0px';
@@ -179,17 +180,21 @@ document.getElementById('history').addEventListener('click', function(){
         document.getElementById('vioBox').style.display = 'none';
     }if (noteclick > 0){
         document.getElementById('noteMap').style.display = 'none';
-    };
-    document.getElementById('narrator').style.display = 'inline';
+    }if (rcmclick > 0) {
+        document.getElementById('rcmBox').style.display = 'none';
+    }document.getElementById('narrator').style.display = 'inline';
 })
 
 
 /*----------------violin--------------*/
 document.getElementById('violin').addEventListener('click', function(){
+    document.getElementById('bgMusic').play();
     if (histclick > 0){
         document.getElementById('narrator').style.display = 'none';
     }if (noteclick > 0){
         document.getElementById('noteMap').style.display = 'none';
+    }if (rcmclick > 0) {
+        document.getElementById('rcmBox').style.display = 'none';
     }if (vioclick == 0){
         //variables for id and classes//
         
@@ -548,21 +553,66 @@ document.getElementById('violin').addEventListener('click', function(){
 
 /*----------------rcm--------------*/
 document.getElementById('rcm').addEventListener('click', function(){
+    document.getElementById('bgMusic').play();
     if (histclick > 0){
         document.getElementById('narrator').style.display = 'none';
     }if (vioclick > 0){
         document.getElementById('vioBox').style.display = 'none';
     }if (noteclick > 0){
         document.getElementById('noteMap').style.display = 'none';
-    };
+    }if (rcmclick === 0){
+        var rcmBox = document.createElement('div');
+        rcmBox.id = 'rcmBox';
+        var infoBox = document.createElement('img');
+        infoBox.id = 'infoBox';
+        var textInfo = document.createElement('h2');
+        textInfo.id = 'textInfo';
+        
+        backImg.appendChild(rcmBox);
+        var getRcmBox = document.getElementById('rcmBox');
+        getRcmBox.appendChild(infoBox);
+        getRcmBox.appendChild(textInfo);
+        
+        var getTextInfo = document.getElementById('textInfo');
+        getTextInfo.innerHTML = 'Click the center table for more info!'
+        
+        var getInfoBox = document.getElementById('infoBox');
+        getInfoBox.src = "images/rcmreq.png";
+        
+        getTextInfo.style.color = 'rgba(50,50,155,1)';
+        getTextInfo.style.fontSize = '1.2vw';
+        
+        getRcmBox.style.left = '0px';
+        getRcmBox.style.bottom = '0px';
+        getRcmBox.style.top = '0px';
+        getRcmBox.style.right = '0px';
+        getRcmBox.style.margin = 'auto';
+        getRcmBox.style.position = 'fixed';
+        getRcmBox.style.height = '65vh';
+        getRcmBox.style.width = '75vw';
+        
+        getInfoBox.style.bottom = '0%';
+        getInfoBox.style.top = '0%';
+        getInfoBox.style.left = '0%';
+        getInfoBox.style.right = '0%';
+        getInfoBox.style.margin = 'auto';
+        getInfoBox.style.position = 'absolute';
+        getInfoBox.style.height = '100%';
+        document.getElementById("infoBox").setAttribute("onClick", "window.open('https://www.heritagemusicacademy.ca/files/RCM%20Violin%20Syllabus%202013.pdf');");
+        
+        rcmclick = rcmclick + 1;
+    }document.getElementById('rcmBox').style.display = 'inline';
 });
 
 /*----------------notemapping--------------*/
 document.getElementById('notemapping').addEventListener('click', function(){
+    document.getElementById('bgMusic').pause();
     if (histclick > 0){
         document.getElementById('narrator').style.display = 'none';
     }if (vioclick > 0){
         document.getElementById('vioBox').style.display = 'none';
+    }if (rcmclick > 0) {
+        document.getElementById('rcmBox').style.display = 'none';
     }if (noteclick == 0){
         
         //div vars//
@@ -703,7 +753,7 @@ document.getElementById('notemapping').addEventListener('click', function(){
             getPlay = document.getElementById('playButton'),
             getClear = document.getElementById('clearArr');
         
-        getInpTitle.innerHTML='Enter a note or notes to play! Please enter the open string, then the note, then s for sharp or b for flat if you want to enter half notes. if entering more than one note, please separate notes with a space!';
+        getInpTitle.innerHTML='Enter a note or notes to play! Please enter the open string, then the note, then s for sharp or b for flat if you want to enter half notes (i.e G# on G-string can be typed is ggs). if entering more than one note, please separate notes with a space!';
         getPlay.innerHTML = 'Play!';
         getClear.innerHTML = 'Clear Notes'
         
