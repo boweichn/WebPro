@@ -753,7 +753,7 @@ document.getElementById('notemapping').addEventListener('click', function(){
             getPlay = document.getElementById('playButton'),
             getClear = document.getElementById('clearArr');
         
-        getInpTitle.innerHTML='Enter a note or notes to play! Please enter the open string, then the note, then s for sharp or b for flat if you want to enter half notes (i.e G# on G-string can be typed is ggs). if entering more than one note, please separate notes with a space!';
+        getInpTitle.innerHTML='Enter a note or notes to play! Please enter the open string, then the note, then s for sharp or b for flat if you want to enter half notes (i.e G# on G-string can be typed as ggs). if entering more than one note, please separate notes with a space!';
         getPlay.innerHTML = 'Play!';
         getClear.innerHTML = 'Clear Notes'
         
