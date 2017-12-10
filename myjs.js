@@ -5,54 +5,76 @@ var noteclick = 0;
 
 //sound mp3 variables G string/
 var soundGG = new Audio('violin sample notes/GG.mp3'),
-    soundGGsAb = new Audio('violin sample notes/GGs.mp3'),
+    soundGGs = new Audio('violin sample notes/GGs.mp3'),
+    soundGAb = new Audio('violin sample notes/GGs.mp3'),
     soundGA = new Audio('violin sample notes/GA.mp3'),
-    soundGAsBb = new Audio('violin sample notes/GAs.mp3'),
+    soundGAs = new Audio('violin sample notes/GAs.mp3'),
+    soundGBb = new Audio('violin sample notes/GAs.mp3'),
     soundGB = new Audio('violin sample notes/GB.mp3'),
     soundGC = new Audio('violin sample notes/GC.mp3'),
-    soundGCsDb = new Audio('violin sample notes/GCs.mp3'),
+    soundGCs = new Audio('violin sample notes/GCs.mp3'),
+    soundGDb = new Audio('violin sample notes/GCs.mp3'),
     soundGD = new Audio('violin sample notes/GD.mp3');
 
 //sound mp3 variables D String/
 var soundDD = new Audio('violin sample notes/DD.mp3'),
-    soundDDsEb = new Audio('violin sample notes/DDs.mp3'),
+    soundDDs = new Audio('violin sample notes/DDs.mp3'),
+    soundDEb = new Audio('violin sample notes/DDs.mp3'),
     soundDE = new Audio('violin sample notes/DE.mp3'),
     soundDF = new Audio('violin sample notes/DF.mp3'),
-    soundDFsGb = new Audio('violin sample notes/DFs.mp3'),
+    soundDFs = new Audio('violin sample notes/DFs.mp3'),
+    soundDGb = new Audio('violin sample notes/DFs.mp3'),
     soundDG = new Audio('violin sample notes/DG.mp3'),
-    soundDGsAb = new Audio('violin sample notes/DGs.mp3'),
+    soundDGs = new Audio('violin sample notes/DGs.mp3'),
+    soundDAb = new Audio('violin sample notes/DGs.mp3'),
     soundDA = new Audio('violin sample notes/DA.mp3');
 
 //sound mp3 variables A String/
 var soundAA = new Audio('violin sample notes/AA.mp3'),
-    soundAAsBb = new Audio('violin sample notes/AAs.mp3'),
+    soundAAs = new Audio('violin sample notes/AAs.mp3'),
+    soundABb = new Audio('violin sample notes/AAs.mp3'),
     soundAB = new Audio('violin sample notes/AB.mp3'),
     soundAC = new Audio('violin sample notes/AC.mp3'),
-    soundACsDb = new Audio('violin sample notes/ACs.mp3'),
+    soundADb = new Audio('violin sample notes/ACs.mp3'),
+    soundACs = new Audio('violin sample notes/ACs.mp3'),
     soundAD = new Audio('violin sample notes/AD.mp3'),
-    soundADsEb = new Audio('violin sample notes/ADs.mp3'),
+    soundADs = new Audio('violin sample notes/ADs.mp3'),
+    soundAEb = new Audio('violin sample notes/ADs.mp3'),
     soundAE = new Audio('violin sample notes/AE.mp3');
 
 //sound mp3 variables E String/
 var soundEE = new Audio('violin sample notes/EE.mp3'),
     soundEF = new Audio('violin sample notes/EF.mp3'),
-    soundEFsGb = new Audio('violin sample notes/EFs.mp3'),
+    soundEFs = new Audio('violin sample notes/EFs.mp3'),
+    soundEGb = new Audio('violin sample notes/EFs.mp3'),
     soundEG = new Audio('violin sample notes/EG.mp3'),
-    soundEGsAb = new Audio('violin sample notes/EGs.mp3'),
+    soundEGs = new Audio('violin sample notes/EGs.mp3'),
+    soundEAb = new Audio('violin sample notes/EGs.mp3'),
     soundEA = new Audio('violin sample notes/EA.mp3'),
-    soundEAsBb = new Audio('violin sample notes/EAs.mp3'),
+    soundEAs = new Audio('violin sample notes/EAs.mp3'),
+    soundEBb = new Audio('violin sample notes/EAs.mp3'),
     soundEB = new Audio('violin sample notes/EB.mp3');
 
-
+var inpData = []
 
 //doc variables//
 var backImg = document.getElementById('backImage');
 
 
-/*----------------reset func---------------*/
+/*---------------func---------------*/
 function reloadPage(){
    window.location.reload();
 }
+
+
+var play = function () {
+    var sound = inpData.shift();
+    window['sound'+sound].play();
+    console.log(inpData)
+    if (inpData.length) setTimeout(play, 1000);
+};
+ 
+
 
 /*----------------home button--------------*/
 document.getElementById('home').addEventListener('click', function(){
@@ -60,7 +82,9 @@ document.getElementById('home').addEventListener('click', function(){
         document.getElementById('narrator').style.display = 'none';
     }if (vioclick > 0){
         document.getElementById('vioBox').style.display = 'none';
-    };
+    }if (noteclick > 0){
+        document.getElementById('noteMap').style.display = 'none';
+    }
 });
 
 /*----------------history--------------*/
@@ -151,6 +175,8 @@ document.getElementById('history').addEventListener('click', function(){
     }
     if (vioclick > 0){
         document.getElementById('vioBox').style.display = 'none';
+    }if (noteclick > 0){
+        document.getElementById('noteMap').style.display = 'none';
     };
     document.getElementById('narrator').style.display = 'inline';
 })
@@ -160,8 +186,9 @@ document.getElementById('history').addEventListener('click', function(){
 document.getElementById('violin').addEventListener('click', function(){
     if (histclick > 0){
         document.getElementById('narrator').style.display = 'none';
-    };
-    if (vioclick == 0){
+    }if (noteclick > 0){
+        document.getElementById('noteMap').style.display = 'none';
+    }if (vioclick == 0){
         //variables for id and classes//
         
         //divs//
@@ -517,21 +544,14 @@ document.getElementById('violin').addEventListener('click', function(){
 });
 
 
-/*----------------basicis--------------*/
-document.getElementById('basics').addEventListener('click', function(){
-    if (histclick > 0){
-        document.getElementById('narrator').style.display = 'none';
-    }if (vioclick > 0){
-        document.getElementById('vioBox').style.display = 'none';
-    };
-});
-
 /*----------------rcm--------------*/
 document.getElementById('rcm').addEventListener('click', function(){
     if (histclick > 0){
         document.getElementById('narrator').style.display = 'none';
     }if (vioclick > 0){
         document.getElementById('vioBox').style.display = 'none';
+    }if (noteclick > 0){
+        document.getElementById('noteMap').style.display = 'none';
     };
 });
 
@@ -547,11 +567,35 @@ document.getElementById('notemapping').addEventListener('click', function(){
         var mapDiv = document.createElement('div');
         mapDiv.id = 'noteMap';
         
+        //left div//
         var picBox = document.createElement('div');
         picBox.id = 'imgBox';
         
+        var noteTitle = document.createElement('h2');
+        noteTitle.id = 'noteTitle';
+        
         var noteImg = document.createElement('img');
         noteImg.id = 'noteMapImg';
+        
+        
+        //right div//
+        var inputBox = document.createElement('div');
+        inputBox.id = 'inputBox';
+        
+        var inputTitle = document.createElement('h2');
+        inputTitle.id = 'inputTitle';
+        
+        var inputOutput = document.createElement('h2');
+        inputOutput.id = 'inputOutput';
+        
+        var playButton = document.createElement('button');
+        playButton.id = 'playButton';
+        
+        var clearArr = document.createElement('button');
+        clearArr.id = 'clearArr';
+        
+        var input = document.createElement('input');
+        input.id = ('input');
         
         //notes highlight var//
         var notePos = document.createElement('div');
@@ -633,12 +677,36 @@ document.getElementById('notemapping').addEventListener('click', function(){
         noteEB.id = 'EB';
         
         //apendChilds//
-        document.getElementById('backImage').appendChild(mapDiv)
-        var noteMap = document.getElementById('noteMap');
-        noteMap.appendChild(picBox);
+        document.getElementById('backImage').appendChild(mapDiv);
         
+        var noteMap = document.getElementById('noteMap');
+        noteMap.appendChild(noteTitle);
+        noteMap.appendChild(picBox);
+        noteMap.appendChild(inputBox);
+        
+        var inpDiv = document.getElementById('inputBox');
         var picDiv = document.getElementById('imgBox');
+        
+        inpDiv.appendChild(inputTitle);
+        inpDiv.appendChild(input);
+        inpDiv.appendChild(inputOutput);
+        inpDiv.appendChild(playButton);
+        inpDiv.appendChild(clearArr);
+        var getInput = document.getElementById('input');
+        getInput.type = 'text';
+        getInput.placeholder = 'Enter a note!';
+        
+        var getInpTitle = document.getElementById('inputTitle'),
+            getInpOut = document.getElementById('inputOutput'),
+            getPlay = document.getElementById('playButton'),
+            getClear = document.getElementById('clearArr');
+        
+        getInpTitle.innerHTML='Enter a note or notes to play! Please enter the string, and then the note. Enter only one note at a time. Keep entering to play a list of notes. (i.e G string G note, is entered as GG! G# or Ab is entered as GGsAb! case sensitive)';
+        getPlay.innerHTML = 'Play!';
+        getClear.innerHTML = 'Clear Notes'
+        
         picDiv.appendChild(notePos);
+
         picDiv.appendChild(noteImg);
         
         //append note divs//
@@ -681,6 +749,8 @@ document.getElementById('notemapping').addEventListener('click', function(){
         
         var noteMapImg = document.getElementById('noteMapImg');
         noteMapImg.src = ('images/notemap.png');
+        var getNoteTitle = document.getElementById('noteTitle');
+        getNoteTitle.innerHTML = "Click on a note to the left to play a sound!"
         
         var noteCoord = document.getElementById('noteCoord');
         
@@ -730,6 +800,7 @@ document.getElementById('notemapping').addEventListener('click', function(){
         noteMap.style.position = 'absolute';
         noteMap.style.height = '65vh';
         noteMap.style.width = '75vw';
+        noteMap.style.textAlign = 'center';
         
         picDiv.style.left = '10%';
         picDiv.style.bottom = '0';
@@ -738,8 +809,38 @@ document.getElementById('notemapping').addEventListener('click', function(){
         picDiv.style.position = 'absolute';
         picDiv.style.height = '75%';
         
+        inpDiv.style.right = '10%';
+        inpDiv.style.bottom = '0';
+        inpDiv.style.top = '0';
+        inpDiv.style.margin = 'auto';
+        inpDiv.style.position = 'absolute';
+        inpDiv.style.height = '75%';
+        inpDiv.style.width = '25%';
+        inpDiv.style.textAlign = 'center';
+        
         noteMapImg.style.maxHeight = "100%";
         noteMapImg.style.maxWidth = "100%";
+        
+        getNoteTitle.style.color = 'rgba(50,50,155,1)';
+        getNoteTitle.style.fontSize = '1.7vw';
+        getNoteTitle.style.left = '10%';
+        
+        getInpTitle.style.color = 'rgba(50,50,155,1)';
+        getInpTitle.style.fontSize = '1.5vw';
+        
+        getInpOut.style.color = 'rgba(50,50,155,1)';
+        getInpOut.style.fontSize = '1.3vw';
+        
+        getInput.style.width = '95%';
+        getInput.style.height = '5%';
+        
+        getPlay.style.width = '40%';
+        getPlay.style.height = '4.6%';
+        getPlay.style.display = 'none';
+        
+        getClear.style.width = '40%';
+        getClear.style.height = '4.6%';
+        getClear.style.display = 'none';
         
         //G STRING DIV STYLE//
         GG.style.position = 'absolute';
@@ -985,17 +1086,17 @@ document.getElementById('notemapping').addEventListener('click', function(){
     document.getElementById('GG').addEventListener('click', function(){
        soundGG.play(); 
     });document.getElementById('GGsAb').addEventListener('click', function(){
-       soundGGsAb.play(); 
+       soundGGs.play(); 
     });document.getElementById('GA').addEventListener('click', function(){
        soundGA.play(); 
     });document.getElementById('GAsBb').addEventListener('click', function(){
-       soundGAsBb.play(); 
+       soundGAs.play(); 
     });document.getElementById('GB').addEventListener('click', function(){
        soundGB.play(); 
     });document.getElementById('GC').addEventListener('click', function(){
        soundGC.play(); 
     });document.getElementById('GCsDb').addEventListener('click', function(){
-       soundGCsDb.play(); 
+       soundGCs.play(); 
     });document.getElementById('GD').addEventListener('click', function(){
        soundGD.play(); 
     });
@@ -1005,17 +1106,17 @@ document.getElementById('notemapping').addEventListener('click', function(){
     document.getElementById('DD').addEventListener('click', function(){
        soundDD.play(); 
     });document.getElementById('DDsEb').addEventListener('click', function(){
-       soundDDsEb.play(); 
+       soundDDs.play(); 
     });document.getElementById('DE').addEventListener('click', function(){
        soundDE.play(); 
     });document.getElementById('DF').addEventListener('click', function(){
        soundDF.play(); 
     });document.getElementById('DFsGb').addEventListener('click', function(){
-       soundDFsGb.play(); 
+       soundDFs.play(); 
     });document.getElementById('DG').addEventListener('click', function(){
        soundDG.play(); 
     });document.getElementById('DGsAb').addEventListener('click', function(){
-       soundDGsAb.play(); 
+       soundDGs.play(); 
     });document.getElementById('DA').addEventListener('click', function(){
        soundDA.play(); 
     });
@@ -1025,17 +1126,17 @@ document.getElementById('notemapping').addEventListener('click', function(){
     document.getElementById('AA').addEventListener('click', function(){
        soundAA.play(); 
     });document.getElementById('AAsBb').addEventListener('click', function(){
-       soundAAsBb.play(); 
+       soundAAs.play(); 
     });document.getElementById('AB').addEventListener('click', function(){
        soundAB.play(); 
     });document.getElementById('AC').addEventListener('click', function(){
        soundAC.play(); 
     });document.getElementById('ACsDb').addEventListener('click', function(){
-       soundACsDb.play(); 
+       soundACs.play(); 
     });document.getElementById('AD').addEventListener('click', function(){
        soundAD.play(); 
     });document.getElementById('ADsEb').addEventListener('click', function(){
-       soundADsEb.play(); 
+       soundADs.play(); 
     });document.getElementById('AE').addEventListener('click', function(){
        soundAE.play(); 
     });
@@ -1047,18 +1148,43 @@ document.getElementById('notemapping').addEventListener('click', function(){
     });document.getElementById('EF').addEventListener('click', function(){
        soundEF.play(); 
     });document.getElementById('EFsGb').addEventListener('click', function(){
-       soundEFsGb.play(); 
+       soundEFs.play(); 
     });document.getElementById('EG').addEventListener('click', function(){
        soundEG.play(); 
     });document.getElementById('EGsAb').addEventListener('click', function(){
-       soundEGsAb.play(); 
+       soundEGs.play(); 
     });document.getElementById('EA').addEventListener('click', function(){
        soundEA.play(); 
     });document.getElementById('EAsBb').addEventListener('click', function(){
-       soundEAsBb.play(); 
+       soundEAs.play(); 
     });document.getElementById('EB').addEventListener('click', function(){
        soundEB.play(); 
     });
+    
+    //note arrays//
+    document.getElementById('input').addEventListener('keyup', function(e){
+       if (e.keyCode === 13) {
+           var getValue = document.getElementById('input').value;
+           inpData.push(getValue);
+           document.getElementById('inputOutput').innerHTML = 'Do you want to play the note(s): '+inpData.join(' ')+'?';
+           document.getElementById('playButton').style.display = 'inline';
+           document.getElementById('clearArr').style.display = 'inline';
+           document.getElementById('input').value = '';
+           console.log(inpData);
+        }; 
+    });
+    
+    document.getElementById('playButton').addEventListener('click', function() {
+        play();
+    });
+    document.getElementById('clearArr').addEventListener('click', function(){
+        inpData = [];
+        document.getElementById('inputOutput').innerHTML = '';
+        document.getElementById('playButton').style.display = 'none';
+        document.getElementById('clearArr').style.display = 'none';
+    });
+    
+    document.getElementById('noteMap').style.display = 'inline';
     
 });
 

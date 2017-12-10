@@ -76,7 +76,9 @@
     font-size:0.8vw;
 }
 
-
+::-webkit-input-placeholder {
+    text-align: center;
+}
 
 
 
